@@ -16,6 +16,9 @@ stopBtn.style.display="none";
 var videoElement = document.querySelector('video');
 videoElement.controls = false;
 var dataElement = document.querySelector('#data');
+var pantalla_normal=document.querySelector("div#pantalla_normal")
+var pantalla_guardado=document.querySelector("div#pantalla_guardado")
+
 
 navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
 
@@ -114,8 +117,8 @@ function onBtnRecordClicked (){
 		startRecording(window.stream);
 		stopBtn.style.display="block";
 		recBtn.style.display="none";
-		/*recBtn.disabled = true;
-		stopBtn.disabled = false;*/
+		pantalla_normal.style.display="none";
+		pantalla_guardado.style.display="none";
 	}
 }
 
@@ -123,10 +126,13 @@ function onBtnStopClicked(){
 	mediaRecorder.stop();
 	//videoElement.controls = true;
 	stopBtn.style.display="none";
+	pantalla_guardado.style.display="block";
+	setTimeout(mostrar_normal, 2500);
+}
+
+function mostrar_normal(){
+	pantalla_normal.style.display="block";
 	recBtn.style.display="block";
-	/*
-	recBtn.disabled = false;
-	stopBtn.disabled = true;*/
 }
 
 function log(message){
@@ -148,6 +154,7 @@ function download(url) {
 	//Simulate click on link to download file, and instantly delete link
 	document.getElementById(hf.id).click();
 	document.getElementById(hf.id).remove();
+
 }
 //browser ID
 function getBrowser(){
