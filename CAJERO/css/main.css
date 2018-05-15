@@ -50,3 +50,29 @@ video {
   /*height:600x;*/
 }
 
+#rec{
+  z-index: 3;
+  position: absolute;
+  height: 125px;
+  width: 125px;
+  background-image: url(/images/rec.png);
+  background-repeat:no-repeat;
+  margin-left: 2px;
+  margin-top: 315px;
+}
+
+#stop{
+  z-index: 2;
+  position: absolute;
+  height: 125px;
+  width: 125px;
+  background-image: url(/images/stop.png);
+  background-repeat:no-repeat;
+  margin-left: 2px;
+  margin-top: 315px;
+}
+
+#data{
+  display: none;
+}
+

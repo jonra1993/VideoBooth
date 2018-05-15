@@ -12,6 +12,7 @@ var recBtn = document.querySelector('button#rec');
 recBtn.onclick=onBtnRecordClicked;
 var stopBtn = document.querySelector('button#stop');
 stopBtn.onclick=onBtnStopClicked;
+stopBtn.style.display="none";
 var videoElement = document.querySelector('video');
 videoElement.controls = false;
 var dataElement = document.querySelector('#data');
@@ -111,16 +112,21 @@ function onBtnRecordClicked (){
 		alert('MediaRecorder not supported on your browser, use Firefox 30 or Chrome 49 instead.');
 	}else {
 		startRecording(window.stream);
-		recBtn.disabled = true;
-		stopBtn.disabled = false;
+		stopBtn.style.display="block";
+		recBtn.style.display="none";
+		/*recBtn.disabled = true;
+		stopBtn.disabled = false;*/
 	}
 }
 
 function onBtnStopClicked(){
 	mediaRecorder.stop();
 	//videoElement.controls = true;
+	stopBtn.style.display="none";
+	recBtn.style.display="block";
+	/*
 	recBtn.disabled = false;
-	stopBtn.disabled = true;
+	stopBtn.disabled = true;*/
 }
 
 function log(message){
