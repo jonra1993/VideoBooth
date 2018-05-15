@@ -1,0 +1,52 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+margin: 0;
+}
+/* Create three unequal columns that floats next to each other */
+.column {
+  float: left;
+  padding: 2px;
+}
+
+/* Left and right column */
+.column.side {
+  width: 10%;
+}
+
+/* Middle column */
+.column.middle {
+  width: 80%;
+  border: 3px solid #73AD21;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column.side, .column.middle {
+      width: 100%;
+  }
+}
+
+video {
+  background: #222;
+  /*margin: 10px auto;*/
+  display: block;
+  margin-bottom:1%;
+  margin-top:1%;
+  margin-left: auto;
+  margin-right: auto;
+  /*width: 360px;
+  height:240px;*/
+  width: 88%;
+  /*height:600x;*/
+}
+
