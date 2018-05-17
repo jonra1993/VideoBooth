@@ -40,10 +40,6 @@ navigator.mediaDevices.getUserMedia(constraints).then(handleSuccess).catch(handl
 //////////////////////////////////////////
 
 //Declaración de funciones
-
-function errorCallback(error){
-	console.log('navigator.getUserMedia error: ', error);	
-}
 function handleSuccess(stream) {
 	//recordButton.disabled = false;
 	//console.log('getUserMedia() got stream: ', stream);
