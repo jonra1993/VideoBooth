@@ -69,13 +69,20 @@ function startRecording(stream) {
 		} else  if (MediaRecorder.isTypeSupported('video/webm;codecs=vp8')) {
 		  var options = {mimeType: 'video/webm;codecs=vp8'};
 		}
-		/*var opt = {
-			audioBitsPerSecond : 128000,
-			videoBitsPerSecond : 2500000,
-			mimeType : 'video/mp4'
-		}*/
-		//log('Using '+opt.mimeType);
-		//var options = {mimeType: 'video/webm;codecs=h264'};
+		//var options = {mimeType: 'video/webm;codecs=H264'};
+
+		/*
+		log('video/invalid='+MediaRecorder.isTypeSupported("video/invalid"));
+		log('video/mpeg4='+MediaRecorder.isTypeSupported("video/mpeg4"));
+		log('video/mp4='+MediaRecorder.isTypeSupported("video/mp4"));
+		log('video/webm;codecs=daala='+MediaRecorder.isTypeSupported("video/webm;codecs=daala"));
+		log("video/webm;codecs=vp8="+MediaRecorder.isTypeSupported("video/webm;codecs=vp8"));
+		log("video/webm;codecs=vp9="+MediaRecorder.isTypeSupported("video/webm;codecs=vp9"));
+		log("video/webm;codecs=h264="+MediaRecorder.isTypeSupported("video/webm;codecs=h264"));
+		log("video/webm;codecs=H264="+MediaRecorder.isTypeSupported("video/webm;codecs=H264"))
+		log("video/webm;codecs=avc1="+MediaRecorder.isTypeSupported("video/webm;codecs=avc1"))	*/
+		
+
 		log('Using '+options.mimeType);	
 		mediaRecorder = new MediaRecorder(stream, options);
 	}else{
