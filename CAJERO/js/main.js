@@ -35,8 +35,7 @@ if(getBrowser() == "Chrome"){
 	var constraints = {audio: true,video: {  width: { min: 640, ideal: 640, max: 640 },  height: { min: 480, ideal: 480, max: 480 }}}; //Firefox
 }
 //Se conecta con la cámara y muestra en la ventana
-navigator.mediaDevices.getUserMedia(constraints).
-    then(handleSuccess).catch(handleError);
+navigator.mediaDevices.getUserMedia(constraints).then(handleSuccess).catch(handleError);
 
 //////////////////////////////////////////
 
@@ -144,13 +143,12 @@ function onBtnRecordClicked (){
 }
 
 function onBtnStopClicked(){
-	clearInterval(x);
-	mediaRecorder.stop();
-	//videoElement.controls = true;
+	clearInterval(x);	//detiene timmer
 	stopBtn.style.display="none";
 	tiempo_transcurrido.style.display="none";
 	encerar();
 	pantalla_guardado.style.display="block";
+	mediaRecorder.stop();
 	setTimeout(mostrar_normal, 3000);
 }
 
