@@ -279,7 +279,7 @@ function mostrar_tiempo (){
 	var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
 	//tiempo máximo de grabación 45 minutos
-	if(minutes>=45){
+	if(minutes>=30){
 		stopBtn.click();
 		tiempo_transcurrido.innerHTML = "MAX";
 	}
