@@ -7,6 +7,7 @@
 var mediaRecorder;
 var chunks = [];
 var count = 0;
+var lapso_numbers=1250;
 
 var recBtn = document.querySelector('button#rec');
 recBtn.onclick=onBtnRecordClicked;
@@ -17,8 +18,14 @@ var videoElement = document.querySelector('video');
 videoElement.controls = false;
 var dataElement = document.querySelector('#data');
 var pantalla_normal=document.querySelector("div#pantalla_normal")
-var pantalla_guardado=document.querySelector("div#pantalla_guardado")
-
+var pantalla_guardado=document.querySelector("div#pantalla_guardado");
+var pantalla_numero3=document.querySelector("div#pantalla_numero3");
+var pantalla_numero2=document.querySelector("div#pantalla_numero2");
+var pantalla_numero1=document.querySelector("div#pantalla_numero1");
+var tiempo_transcurrido=document.querySelector("#demo");
+tiempo_transcurrido.style.display="none";
+var countDownDate;
+var x;
 
 navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
 
@@ -114,25 +121,46 @@ function onBtnRecordClicked (){
 	 if (typeof MediaRecorder === 'undefined' || !navigator.getUserMedia) {
 		alert('MediaRecorder not supported on your browser, use Firefox 30 or Chrome 49 instead.');
 	}else {
-		startRecording(window.stream);
 		stopBtn.style.display="block";
 		recBtn.style.display="none";
 		pantalla_normal.style.display="none";
 		pantalla_guardado.style.display="none";
+
+		//delay que muestra cada una de  las pantalla
+		setTimeout(function(){ 
+			pantalla_numero3.style.display="none";
+			setTimeout(function(){ 
+				pantalla_numero2.style.display="none";
+				setTimeout(function(){
+					pantalla_numero1.style.display="none"; 
+					startRecording(window.stream);
+					countDownDate = new Date().getTime();
+					x = setInterval(mostrar_tiempo, 500);
+					tiempo_transcurrido.style.display="block";
+				}, lapso_numbers); 
+			}, lapso_numbers); 
+		}, lapso_numbers);
 	}
 }
 
 function onBtnStopClicked(){
+	clearInterval(x);
 	mediaRecorder.stop();
 	//videoElement.controls = true;
 	stopBtn.style.display="none";
+	tiempo_transcurrido.style.display="none";
+	encerar();
 	pantalla_guardado.style.display="block";
-	setTimeout(mostrar_normal, 2500);
+	setTimeout(mostrar_normal, 3000);
 }
 
 function mostrar_normal(){
 	pantalla_normal.style.display="block";
 	recBtn.style.display="block";
+	//se vuelven visible de nuevo
+	pantalla_numero3.style.display="block";
+	pantalla_numero2.style.display="block";
+	pantalla_numero1.style.display="block";
 }
 
 function log(message){
@@ -219,4 +247,49 @@ function getBrowser(){
 
 	return browserName;
 }
+
+function encerar()
+{
+	tiempo_transcurrido.innerHTML = "00:00" ;
+}
+
+/*
+// Update the count down every 1 second
+var x = setInterval(function() {
+	segundos++;
+	if(segundos>59){
+		segundos=0;
+		minutos++;
+	}
+	document.getElementById("demo").innerHTM = minutes + ":" + seconds;
+	// If the count down is finished, write some text 
+	if (minutos==60) {
+		tiempo_transcurrido.innerHTML="Excedió el límite";
+	}
+  }, 1000);
+*/
+function mostrar_tiempo (){
+	// Get todays date and time
+	var now = new Date().getTime();
+  
+	// Find the distance between now an the count down date
+	var distance = now-countDownDate;
+//	var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+	var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+	var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+	//tiempo máximo de grabación 45 minutos
+	if(minutes>=45){
+		stopBtn.click();
+		tiempo_transcurrido.innerHTML = "MAX";
+	}
+	 
+	if(seconds<10&&minutes<10) tiempo_transcurrido.innerHTML = "0"+minutes + ":" + "0"+seconds ;
+	else if(seconds<10&&minutes>=10) tiempo_transcurrido.innerHTML = minutes + ":" + "0"+seconds ;
+	else if(seconds>=10&&minutes<10) tiempo_transcurrido.innerHTML = "0"+minutes + ":" +seconds ;
+	else tiempo_transcurrido.innerHTML = minutes + ":" + seconds ;
+	
+}
+
+
 
