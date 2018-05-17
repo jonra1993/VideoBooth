@@ -72,14 +72,14 @@ function applyFilter(ctx, width, height) {
   var data = imageData.data; // data is an array of pixels in RGBA
 
   // modify pixels
-  for (var i = 0; i < data.length; i+=4) {
-    var average = (data[i] + data[i + 1]  + data[i + 2]) / 3;
-    data[i] = average >= 128 ? 255 : 0; // red
-    data[i + 1] = average >= 128 ? 255 : 0; // green
-    data[i + 2] = average >= 128 ? 255 : 0; // blue
-    // note: i+3 is the alpha channel, we are skipping that one
-  }
-  // render pixels back
+	//filtro1(data);
+	//filtro_noir(data);
+	//filtro_western(data);
+	//filtro_scifi(data);
+	//bwcartoon(data);
+	processDiff(data,50);
+	
+	// render pixels back
   ctx.putImageData(imageData, 0, 0);
 }
 

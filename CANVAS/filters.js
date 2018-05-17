@@ -1,40 +1,62 @@
-/*
- * noir is an extra filter for an exercise
- */
-function bwcartoon(pos, r, g, b, outputData) {
-	var offset =  pos * 4;
-	if( outputData[offset] < 120 ) {
-		outputData[offset] = 80;
-		outputData[++offset] = 80;
-		outputData[++offset] = 80;
-	} else {
-		outputData[offset] = 255;
-		outputData[++offset] = 255;
-		outputData[++offset] = 255;
+function filtro1(data){
+	for (var i = 0; i < data.length; i+=4) {
+    var average = (data[i] + data[i + 1]  + data[i + 2]) / 3;
+    data[i + 0] = average >= 128 ? 255 : 0; // red
+    data[i + 1] = average >= 128 ? 255 : 0; // green
+    data[i + 2] = average >= 128 ? 255 : 0; // blue
+    // note: i+3 is the alpha channel, we are skipping that one
+  }
+}
+function filtro_noir(data) {
+	for (var i = 0; i < data.length; i+=4) {
+		var brightness = (3*data[i + 0]  + 4*data[i + 1] + data[i + 2]) >>> 3;
+		if (brightness < 0) brightness = 0;
+		data[i + 0] = brightness;
+		data[i + 1] = brightness;
+		data[i + 2] = brightness;
 	}
-	outputData[++offset] = 255;
-	++offset;
 }
 
-function noir(pos, r, g, b, data) {
-	var brightness = (3*r + 4*g + b) >>> 3;
-	if (brightness < 0) brightness = 0;
-	data[pos * 4 + 0] = brightness;
-	data[pos * 4 + 1] = brightness;
-	data[pos * 4 + 2] = brightness;
+function filtro_western(data) {
+	for (var i = 0; i < data.length; i+=4) {
+		var brightness = (3*data[i + 0] + 4*data[i + 1] + data[i + 2]) >>> 3;
+		data[i + 0] = brightness+40;
+		data[i + 1] = brightness+20;
+		data[i + 2] = brightness-20;
+		data[i + 3] = 255; //220;
+	}
 }
 
-function western(pos, r, g, b, data) {
-	var brightness = (3*r + 4*g + b) >>> 3;
-	data[pos * 4 + 0] = brightness+40;
-	data[pos * 4 + 1] = brightness+20;
-	data[pos * 4 + 2] = brightness-20;
-	data[pos * 4 + 3] = 255; //220;
+function filtro_scifi(data) {
+	for (var i = 0; i < data.length; i+=4) {
+		data[i + 0] = Math.round(255 - data[i + 0]) ;
+		data[i + 1] = Math.round(255 - data[i + 1]) ;
+		data[i + 2] = Math.round(255 - data[i + 2]) ;
+	}
 }
 
-function scifi(pos, r, g, b, data) {
-	var offset = pos * 4;
-	data[offset] = Math.round(255 - r) ;
-	data[offset+1] = Math.round(255 - g) ;
-	data[offset+2] = Math.round(255 - b) ;
+function bwcartoon(data) {
+	for (var i = 0; i < data.length; i+=4) {
+	if( data[i + 0] < 120 ) {
+		data[i + 0] = 80;
+		data[i + 1] = 80;
+		data[i + 2] = 80;
+	} else {
+		data[i + 0] = 255;
+		data[i + 1] = 255;
+		data[i + 2] = 255;
+	}
+	data[i + 3] = 255;
+	}
+}
+
+function processDiff(data,pixelDiffThreshold) {
+	for (var i = 0; i < data.length; i += 4) {
+		var pixelDiff = data[i + 0] * 0.3 + data[i + 1] * 0.6 + data[i + 2] * 0.1;
+		var normalized = Math.min(255, pixelDiff * (255 / pixelDiffThreshold));
+		data[i + 0] = 0;
+		data[i + 1] = normalized;
+		data[i + 2] = 0;
+		//data[i + 3] = normalized;
+	}
 }
