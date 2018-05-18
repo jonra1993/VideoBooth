@@ -1,26 +1,34 @@
 <!doctype html>
+<html>
 <head>
-  <title>MediaRecorder examples - Use MediaRecorder to record an altered video</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <link rel="stylesheet" href="styles.css" type="text/css">
-  <script src="main.js"></script>
-  <script src="filters.js"></script>
+    <title>VideoBooth with Canvas</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/main.css" />
 </head>
 <body>
-  <header>
-    <h1>Filter and record live video</h1>
-  </header>
-  <main>
-    <p>
-      <button id="record" disabled>Record video</button>
-      <button id="stop" disabled>Stop</button>
-      <span id="recording" style="display:none">Recording…</span>
-    </p>
-    <p>
-      <canvas id="canvas"></canvas>
-    </p>
+  <div class="row">
+      <div class="column side">
+      </div>
+      <div class="column middle">
+        <canvas id="canvas"></canvas>
+        <div id="pantalla_normal" class="pantalla_normal"></div>	
+        <div id="pantalla_numero3" class="pantalla_numero3"></div>
+        <div id="pantalla_numero2" class="pantalla_numero2"></div>
+        <div id="pantalla_numero1" class="pantalla_numero1"></div>
+        <div id="pantalla_guardado" class="pantalla_guardado"></div>	
+      </div>
+      <div class="column side">
+        <button id="rec"></button>
+        <button id="stop"></button>
+        <p id="demo"></p>	
+      </div>
+    </div>
+    
     <p id="data"></p>
-  </main>
+
+    <script src="js/main.js"></script>
+    <script src="js/filters.js"></script>
+
 </body>
+</html>

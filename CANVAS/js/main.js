@@ -1,18 +1,31 @@
 'use strict';
 
-var recordButton, stopButton, recorder, recordingLabel, dataElement;
+var recBtn, stopBtn, recorder, dataElement; 
+var pantalla_normal, pantalla_guardado, pantalla_numero3, pantalla_numero2, pantalla_numero1;
 var chunks = [];
 var video ;
+var count = 0;
+var lapso_numbers=1250;
+var countDownDate;
+var tiempo_transcurrido;
+var x;
+
+
 window.onload = function () {
   //se conecta elementos html con javascript
-  recordButton = document.getElementById('record');
-  stopButton = document.getElementById('stop');
-  recordingLabel = document.getElementById('recording');
-  dataElement = document.querySelector('#data');
-  //se añade los listeners para cada botón
-  recordButton.onclick=startRecording;
-  stopButton.onclick=stopRecording;
- 
+	recBtn = document.getElementById('rec');
+	recBtn.onclick=startRecording;
+	stopBtn = document.getElementById('stop');
+	stopBtn.onclick=stopRecording;
+	stopBtn.style.display="none";
+	dataElement = document.querySelector('#data');
+	pantalla_normal=document.querySelector("div#pantalla_normal")
+	pantalla_guardado=document.querySelector("div#pantalla_guardado");
+	pantalla_numero3=document.querySelector("div#pantalla_numero3");
+	pantalla_numero2=document.querySelector("div#pantalla_numero2");
+	pantalla_numero1=document.querySelector("div#pantalla_numero1");
+	tiempo_transcurrido=document.querySelector("#demo");
+	tiempo_transcurrido.style.display="none";
   navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
 
   if(getBrowser() == "Chrome"){
@@ -24,7 +37,7 @@ window.onload = function () {
   navigator.mediaDevices.getUserMedia(constraints).then(handleSuccess).catch(handleError);
   
   function handleSuccess(stream) {
-    recordButton.disabled = false;
+    recBtn.disabled = false;
 
     // We need to create a video element and pipe the stream into it so we
     // can know when we have data in the stream, and its width/height
@@ -74,10 +87,10 @@ function applyFilter(ctx, width, height) {
   // modify pixels
 	//filtro1(data);
 	//filtro_noir(data);
-	//filtro_western(data);
+	filtro_western(data);
 	//filtro_scifi(data);
 	//bwcartoon(data);
-	processDiff(data,50);
+	//processDiff(data,50);
 	
 	// render pixels back
   ctx.putImageData(imageData, 0, 0);
@@ -138,20 +151,45 @@ function initRecorderWithCanvas(canvas) {
 }
 
 function startRecording() {
-  recordButton.disabled = true;
-  stopButton.disabled = false;
-  recordingLabel.style = 'display:inline';
-  recorder.start();
+	stopBtn.style.display="block";
+	recBtn.style.display="none";
+	pantalla_normal.style.display="none";
+	pantalla_guardado.style.display="none";
+			//delay que muestra cada una de  las pantalla
+			setTimeout(function(){ 
+				pantalla_numero3.style.display="none";
+				setTimeout(function(){ 
+					pantalla_numero2.style.display="none";
+					setTimeout(function(){
+						pantalla_numero1.style.display="none"; 
+						recorder.start();
+						countDownDate = new Date().getTime();
+						x = setInterval(mostrar_tiempo, 500);
+						tiempo_transcurrido.style.display="block";
+					}, lapso_numbers); 
+				}, lapso_numbers); 
+			}, lapso_numbers);
+ 
 }
 
 function stopRecording() {
-  recordButton.disabled = false;
-  stopButton.disabled = true;
-  recordingLabel.style = 'display:none';
-  // eventually this will trigger the dataavailable event
-  recorder.stop();
+	clearInterval(x);	//detiene timmer
+	stopBtn.style.display="none";
+	tiempo_transcurrido.style.display="none";
+	encerar();
+	pantalla_guardado.style.display="block";
+	recorder.stop();
+	setTimeout(mostrar_normal, 3000);
 }
 
+function mostrar_normal(){
+	pantalla_normal.style.display="block";
+	recBtn.style.display="block";
+	//se vuelven visible de nuevo
+	pantalla_numero3.style.display="block";
+	pantalla_numero2.style.display="block";
+	pantalla_numero1.style.display="block";
+}
 
 function log(message){
 	dataElement.innerHTML = dataElement.innerHTML+'<br>'+message ;
@@ -237,4 +275,32 @@ function getBrowser(){
 
 
 	return browserName;
+}
+
+function encerar()
+{
+	tiempo_transcurrido.innerHTML = "00:00" ;
+}
+
+function mostrar_tiempo (){
+	// Get todays date and time
+	var now = new Date().getTime();
+  
+	// Find the distance between now an the count down date
+	var distance = now-countDownDate;
+//	var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+	var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+	var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+	//tiempo máximo de grabación 45 minutos
+	if(minutes>=30){
+		stopBtn.click();
+		tiempo_transcurrido.innerHTML = "MAX";
+	}
+	 
+	if(seconds<10&&minutes<10) tiempo_transcurrido.innerHTML = "0"+minutes + ":" + "0"+seconds ;
+	else if(seconds<10&&minutes>=10) tiempo_transcurrido.innerHTML = minutes + ":" + "0"+seconds ;
+	else if(seconds>=10&&minutes<10) tiempo_transcurrido.innerHTML = "0"+minutes + ":" +seconds ;
+	else tiempo_transcurrido.innerHTML = minutes + ":" + seconds ;
+	
 }
