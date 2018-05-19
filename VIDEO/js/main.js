@@ -123,7 +123,6 @@ function onBtnRecordClicked (){
 	 if (typeof MediaRecorder === 'undefined' || !navigator.getUserMedia) {
 		alert('MediaRecorder not supported on your browser, use Firefox 30 or Chrome 49 instead.');
 	}else {
-		stopBtn.style.display="block";
 		recBtn.style.display="none";
 		pantalla_normal.style.display="none";
 		pantalla_guardado.style.display="none";
@@ -136,6 +135,7 @@ function onBtnRecordClicked (){
 				setTimeout(function(){
 					pantalla_numero1.style.display="none"; 
 					startRecording(window.stream);
+					stopBtn.style.display="block";
 					countDownDate = new Date().getTime();
 					x = setInterval(mostrar_tiempo, 500);
 					tiempo_transcurrido.style.display="block";
