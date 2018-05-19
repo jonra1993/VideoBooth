@@ -129,7 +129,6 @@ function initRecorderWithCanvas(canvas) {
 }
 
 function startRecording() {
-	stopBtn.style.display="block";
 	recBtn.style.display="none";
 	pantalla_normal.style.display="none";
 	pantalla_guardado.style.display="none";
@@ -141,6 +140,7 @@ function startRecording() {
 					setTimeout(function(){
 						pantalla_numero1.style.display="none"; 
 						recorder.start();
+						stopBtn.style.display="block";
 						countDownDate = new Date().getTime();
 						x = setInterval(mostrar_tiempo, 500);
 						tiempo_transcurrido.style.display="block";
