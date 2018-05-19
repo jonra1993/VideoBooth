@@ -70,24 +70,49 @@ function initCanvas(video) {
   var draw = function () {
     // create a renderAnimationFrame loop
     requestAnimationFrame(draw);
-    // draw the video data into the canvas
-    ctx.drawImage(video, 0, 0, width, height);
+	///mirror
+	ctx.translate(width, 0);
+	ctx.scale(-1, 1);
+	////////
+	//si se usa estos filtro desactiva applyFilter
+        //ctx.filter='grayscale(90%)';
+		//ctx.filter='blur(1px)';
+		ctx.filter='hue-rotate(90deg)';
+		
+	ctx.drawImage(video, 0, 0, width, height);
+	ctx.setTransform(1, 0, 0, 1, 0, 0); //importante para mirror
+	//ctx.restore();
     // apply a custom filter to the image
-    applyFilter(ctx, width, height);
+    //applyFilter(ctx, width, height);
   };
   draw();
   initRecorderWithCanvas(canvas);
 }
+/*
 
+filter: blur(5px);
+filter: brightness(0.4);
+filter: contrast(200%);
+filter: drop-shadow(16px 16px 20px blue);
+filter: grayscale(50%);
+filter: hue-rotate(90deg);
+filter: invert(75%);
+filter: opacity(25%);
+filter: saturate(30%);
+filter: sepia(60%);
+filter: contrast(175%) brightness(3%);
+*/
 function applyFilter(ctx, width, height) {
   // read pixels
   var imageData = ctx.getImageData(0, 0, width, height);
   var data = imageData.data; // data is an array of pixels in RGBA
-
+  //log('width = ' + width);
+  //log('height = ' + height);
+  //log('longitud de la imagen = ' + data.length);
   // modify pixels
 	//filtro1(data);
-	//filtro_noir(data);
-	filtro_western(data);
+	filtro_noir(data);
+//	filtro_western(data);
 	//filtro_scifi(data);
 	//bwcartoon(data);
 	//processDiff(data,50);
