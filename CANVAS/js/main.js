@@ -77,13 +77,13 @@ function initCanvas(video) {
 	//si se usa estos filtro desactiva applyFilter
         //ctx.filter='grayscale(90%)';
 		//ctx.filter='blur(1px)';
-		ctx.filter='hue-rotate(90deg)';
+		//ctx.filter='hue-rotate(90deg)';
 		
 	ctx.drawImage(video, 0, 0, width, height);
 	ctx.setTransform(1, 0, 0, 1, 0, 0); //importante para mirror
 	//ctx.restore();
     // apply a custom filter to the image
-    //applyFilter(ctx, width, height);
+    applyFilter(ctx, width, height);
   };
   draw();
   initRecorderWithCanvas(canvas);
@@ -111,11 +111,11 @@ function applyFilter(ctx, width, height) {
   //log('longitud de la imagen = ' + data.length);
   // modify pixels
 	//filtro1(data);
-	filtro_noir(data);
+//	filtro_noir(data);
 //	filtro_western(data);
 	//filtro_scifi(data);
 	//bwcartoon(data);
-	//processDiff(data,50);
+	processDiff(data,70);
 	
 	// render pixels back
   ctx.putImageData(imageData, 0, 0);

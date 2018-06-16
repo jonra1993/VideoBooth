@@ -57,6 +57,6 @@ function processDiff(data,pixelDiffThreshold) {
 		data[i + 0] = 0;
 		data[i + 1] = normalized;
 		data[i + 2] = 0;
-		//data[i + 3] = normalized;
+		data[i + 3] = normalized;
 	}
 }
