@@ -115,6 +115,9 @@ video {
   height:240px;*/
   width: 88%;
   /*height:600x;*/
+  transform: rotateY(180deg);
+  -webkit-transform:rotateY(180deg); /* Safari and Chrome */
+  -moz-transform:rotateY(180deg); /* Firefox */
 }
 
 #rec{
