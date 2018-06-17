@@ -3,7 +3,7 @@
 }
 
 body {
-background-color: rgb(61, 54, 54);
+background-color: rgb(ff, ff, ff);
 margin: 0;
 }
 /* Create three unequal columns that floats next to each other */
@@ -101,6 +101,73 @@ margin: 0;
   margin-top: -730px;
 }
 
+.logoBGR{
+  float: left;
+  z-index: 5;                 
+  position: relative;
+  height: 110px;
+  width: 15%;
+  background-image: url(logoBGR2.png);
+  background-repeat:no-repeat;
+  background-position: center; 
+}
+article {
+  float: left;
+  width: 70%;
+  text-align: center;
+  height: 110px; /* only for demonstration, should be removed */
+  background-color: rgba(0,0,0,0); 
+}
+
+h1, hr {
+  margin: 3;
+  padding: 0;
+  line-height: 0.9;
+}
+hr, p {
+  margin: 0;
+  padding: 0;
+  line-height: 0.9;
+}
+
+.logoProyecto{
+  float: left;
+  z-index: 5;                 
+  position: relative;
+  height: 110px;
+  width: 15%;
+  background-color: rgba(255,255,255);
+  background-image: url(logoBGR2.png);
+  background-repeat:no-repeat;
+  background-position: center; 
+}
+
+/* Clear floats after the columns */
+.logoIicio:after {
+  background-color: rgb(0, 0, 0);
+  content: "";
+  display: table;
+  clear: both;
+}
+
+hr { 
+  display: block;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  margin-left: auto;
+  margin-right: auto;
+  border-style: inset;
+  border-width: 3px;
+  background-color: rgb(226, 213, 33);
+  border-color: rgb(255, 255, 0);
+}
+
+h1 { 
+  color: blue;
+  font-family: verdana;
+  font-size: 150%;
+}
+
 video {
   z-index: 1;
   position: relative;
@@ -125,13 +192,13 @@ video {
   position: absolute;
   height: 125px;
   width: 125px;
-  /*border-color: rgb(61, 54, 54);*/
-  background-color: rgb(61, 54, 54);
+  background-color:  rgb(0, 0, 0,0.03);
   background-image: url(rec.png);
   background-repeat:no-repeat;
   background-position: center; 
   margin-left: 2px;
   margin-top: 315px;
+  border-radius:40px;
 }
 
 #stop{
@@ -139,13 +206,13 @@ video {
   position: absolute;
   height: 125px;
   width: 125px;
-  /*border-color: rgb(61, 54, 54);*/
-  background-color: rgb(61, 54, 54);
+  background-color:  rgb(0, 0, 0,0.03 );
   background-image: url(stop.png);
   background-repeat:no-repeat;
   background-position: center; 
   margin-left: 2px;
   margin-top: 315px;
+  border-radius:40px;
 }
 #demo{
   z-index: 1;
@@ -161,5 +228,18 @@ video {
 
 #data{
   display: none;
+}
+
+.bg {
+  /* The image used */
+  background-image: url("backg3.jpeg");
+
+  /* Full height */
+  height: 100%; 
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
