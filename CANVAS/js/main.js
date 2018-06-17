@@ -12,50 +12,43 @@ var x;
 
 
 window.onload = function () {
-  //se conecta elementos html con javascript
-	recBtn = document.getElementById('rec');
-	recBtn.onclick=startRecording;
-	stopBtn = document.getElementById('stop');
-	stopBtn.onclick=stopRecording;
-	stopBtn.style.display="none";
-	dataElement = document.querySelector('#data');
-	pantalla_normal=document.querySelector("div#pantalla_normal")
-	pantalla_guardado=document.querySelector("div#pantalla_guardado");
-	pantalla_numero3=document.querySelector("div#pantalla_numero3");
-	pantalla_numero2=document.querySelector("div#pantalla_numero2");
-	pantalla_numero1=document.querySelector("div#pantalla_numero1");
-	tiempo_transcurrido=document.querySelector("#demo");
-	tiempo_transcurrido.style.display="none";
-  navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
-
-  if(getBrowser() == "Chrome"){
-    var constraints = {"audio": true, "video": {  "mandatory": {  "minWidth": 640,  "maxWidth": 640, "minHeight": 480,"maxHeight": 480 }, "optional": [] } };//Chrome did not support the new constraints spec until 59 for video and 60 for audio
-  }else if(getBrowser() == "Firefox"){
-    var constraints = {audio: true,video: {  width: { min: 640, ideal: 640, max: 640 },  height: { min: 480, ideal: 480, max: 480 }}}; //Firefox
-  }
-  // get video stream from user's webcam
-  navigator.mediaDevices.getUserMedia(constraints).then(handleSuccess).catch(handleError);
+	//se conecta elementos html con javascript
+	  video =document.getElementById('videos');
+	  recBtn = document.getElementById('rec');
+	  recBtn.onclick=startRecording;
+	  stopBtn = document.getElementById('stop');
+	  stopBtn.onclick=stopRecording;
+	  stopBtn.style.display="none";
+	  dataElement = document.querySelector('#data');
+	  pantalla_normal=document.querySelector("div#pantalla_normal")
+	  pantalla_guardado=document.querySelector("div#pantalla_guardado");
+	  pantalla_numero3=document.querySelector("div#pantalla_numero3");
+	  pantalla_numero2=document.querySelector("div#pantalla_numero2");
+	  pantalla_numero1=document.querySelector("div#pantalla_numero1");
+	  tiempo_transcurrido=document.querySelector("#demo");
+	  tiempo_transcurrido.style.display="none";
+		navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
   
-  function handleSuccess(stream) {
-    recBtn.disabled = false;
-
-    // We need to create a video element and pipe the stream into it so we
-    // can know when we have data in the stream, and its width/height
-    // (and adjust the canvas element accordingly).
-    // Note that this video doesn't need to be attached to the DOM for this
-    // to work.
-    video = document.createElement('video');
-    window.stream = stream;
-    video.srcObject = stream;
-    video.addEventListener('loadedmetadata', function () {initCanvas(video);});
-    // we need to play the video to trigger the loadedmetadata event
-    video.muted();
-    video.play();
-  }
-  function handleError(error) {
-    console.log('navigator.getUserMedia error: ', error);
-  } 
-};
+	if(getBrowser() == "Chrome"){
+	  var constraints = {"audio": true, "video": {  "mandatory": {  "minWidth": 640,  "maxWidth": 640, "minHeight": 480,"maxHeight": 480 }, "optional": [] } };//Chrome did not support the new constraints spec until 59 for video and 60 for audio
+	}else if(getBrowser() == "Firefox"){
+	  var constraints = {audio: true,video: {  width: { min: 640, ideal: 640, max: 640 },  height: { min: 480, ideal: 480, max: 480 }}}; //Firefox
+	}  
+	function handleSuccess(stream) {
+	  recBtn.disabled = false;
+	  //video = document.createElement('video');
+	  window.stream = stream;
+	  video.srcObject = stream;
+	  video.addEventListener('loadedmetadata', function () {initCanvas(video);});
+	  // we need to play the video to trigger the loadedmetadata event
+	}
+	function handleError(error) {
+	  console.log('navigator.getUserMedia error: ', error);
+	} 
+  
+	  // get video stream from user's webcam
+	  navigator.mediaDevices.getUserMedia(constraints).then(handleSuccess).catch(handleError);
+  };
 
 function initCanvas(video) {
   var width = video.videoWidth;
@@ -111,11 +104,11 @@ function applyFilter(ctx, width, height) {
   //log('longitud de la imagen = ' + data.length);
   // modify pixels
 	//filtro1(data);
-//	filtro_noir(data);
+	filtro_noir(data);
 //	filtro_western(data);
 	//filtro_scifi(data);
 	//bwcartoon(data);
-	processDiff(data,70);
+	//processDiff(data,70);
 	
 	// render pixels back
   ctx.putImageData(imageData, 0, 0);
