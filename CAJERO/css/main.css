@@ -116,6 +116,14 @@
     width: 88%;
     /*height:600x;*/
   }
+
+  video {
+    z-index: 0;
+    position: relative;
+    visibility: hidden;
+    margin-left: 0px;
+    margin-top: -730px;
+  }
   
   #rec{
     z-index: 3;
