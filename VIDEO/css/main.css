@@ -254,13 +254,55 @@ video {
   position: absolute;
   height: 100%;
   width: 100%;
-  background-color: rgb(0, 0, 0);
-  background-image: url(gu.png);
-  background-repeat:no-repeat;
-  background-position: center; 
+  background-color:white;
   top: 0;
   left: 0;
 }
+
+ .logo_guardado{
+  float: left;
+  z-index: 6;
+  width: 70%;
+  height: 100px;
+  position: relative;
+ }
+
+  .cuadro_guardado{
+  margin-left: 10%;
+  margin-top: 10%;
+  height: 80%;
+  width: 20%;
+  background-color:blue;
+  position: relative;
+  animation-name: exampleg;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+}
+
+/* Standard syntax */
+@keyframes exampleg {
+    0%   {background-color:blue; left:0px; top:0px;}
+    25%  {background-color:rgb(14, 70, 122); left:63%; top:0px;}
+    50%  {background-color:rgba(14, 70, 122, 0.74); left:63%; top:370%;}
+    75%  {background-color:rgba(14, 70, 122, 0.555); left:0px; top:370%;}
+    100% {background-color:blue; left:0px; top:0px;}
+}
+ .texto_guardado{
+  position: relative;
+  z-index: 6;
+  height: 100%;
+  width: 30%;
+  float: left;
+  background-color: #0e3d53;
+ }
+
+ .texto_guardado p{
+  color:white;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 150%;
+  margin-top:85%;
+  max-width: 70%; 
+ }
 
 .pantalla_numero1{
   z-index: 3;
