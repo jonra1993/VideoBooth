@@ -9,6 +9,9 @@ var chunks = [];
 var count = 0;
 var lapso_numbers=1250;
 
+var entBtn = document.querySelector('button#entrar');
+entBtn.onclick=onBtnEntrarClicked;
+
 var recBtn = document.querySelector('button#rec');
 recBtn.onclick=onBtnRecordClicked;
 var stopBtn = document.querySelector('button#stop');
@@ -22,6 +25,7 @@ var pantalla_guardado=document.querySelector("div#pantalla_guardado");
 var pantalla_numero3=document.querySelector("div#pantalla_numero3");
 var pantalla_numero2=document.querySelector("div#pantalla_numero2");
 var pantalla_numero1=document.querySelector("div#pantalla_numero1");
+var pantallaInicio=document.querySelector("div#pantallaInicio")
 var tiempo_transcurrido=document.querySelector("#demo");
 tiempo_transcurrido.style.display="none";
 var countDownDate;
@@ -117,6 +121,10 @@ function startRecording(stream) {
 	mediaRecorder.onwarning = function(e){
 		log('Warning: ' + e);
 	};
+}
+
+function onBtnEntrarClicked(){
+	pantallaInicio.style.display="none";
 }
 
 function onBtnRecordClicked (){
