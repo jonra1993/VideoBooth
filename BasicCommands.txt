@@ -1,0 +1,46 @@
+##DOCKER Commands
+docker run imageName or tag             //levantar instancia
+docker images                           //Ver imagenes descargadas
+docker ps                               //ver instancias ejecutandose
+docker network ls                       //ver redes docker
+docker stop $(docker ps -aq)            //detener todas las instancias q se ejecutan
+docker exec -it instance_Name bash      //Ingresar a una instancia   
+docker rmi -f $(docker images -a -q)    //Eliminar todas la imagenes
+rm -rf ~/Library/Containers/com.docker.docker/Data/*      //elminar datos docker
+
+
+##DOCKER COMPOSER Commands
+docker-compose up -d                    //Levatar el servicio docker
+docker-compose down --volumes           //Apagar el servicio docker
+
+##GIT Commands
+codigos https://www.hostinger.es/tutoriales/comandos-de-git#gref
+commands https://github.com/joshnh/Git-Commands
+
+git clone             //clonar repositorio
+
+git init
+git status
+stage 1 file git add xxx.x
+stage all changes:  git add -A && git commit -m "nombre del cmmit"
+git config --global user.mail "yyy@xxx.es"
+git config --global user.name "jonra1993"
+git commit -m "nombre del cmmit"
+
+git remote add origin pagina derepoengithub
+git push -u origin master
+git push
+git pull
+
+
+git checkout -- nombre.xw   volver a version anterior no valida cambioas
+git diff nombre.xw    
+git branch nombrebranch
+git checkout nombrebranch             //cambio de todo entorno a nombrebranch
+git log
+
+
+git tag
+git tag -a v2.1.0 -m "xyz feature is released in this tag."
+git push origin --tags
+git fetch   //actualiza tag y cambios del remote a local
