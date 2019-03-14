@@ -9,11 +9,17 @@ var chunks = [];
 var count = 0;
 var lapso_numbers=1250;
 
+var entBtn = document.querySelector('button#entrar');
+entBtn.onclick=onBtnEntrarClicked;
+
 var recBtn = document.querySelector('button#rec');
 recBtn.onclick=onBtnRecordClicked;
+
 var stopBtn = document.querySelector('button#stop');
 stopBtn.onclick=onBtnStopClicked;
 stopBtn.style.display="none";
+
+var encabezado=document.querySelector('#logoIicio')
 var videoElement = document.querySelector('video');
 videoElement.controls = false;
 var dataElement = document.querySelector('#data');
@@ -22,6 +28,7 @@ var pantalla_guardado=document.querySelector("div#pantalla_guardado");
 var pantalla_numero3=document.querySelector("div#pantalla_numero3");
 var pantalla_numero2=document.querySelector("div#pantalla_numero2");
 var pantalla_numero1=document.querySelector("div#pantalla_numero1");
+var pantallaInicio=document.querySelector("div#pantallaInicio")
 var tiempo_transcurrido=document.querySelector("#demo");
 tiempo_transcurrido.style.display="none";
 var countDownDate;
@@ -119,6 +126,39 @@ function startRecording(stream) {
 	};
 }
 
+function onBtnEntrarClicked(){
+	pantallaInicio.style.display="none";
+	encabezado.style.display="none";
+	pantalla_numero3.style.height="117%";
+	pantalla_numero2.style.height="117%";
+	pantalla_numero1.style.height="117%";
+	videoElement.style.height="117%";
+
+	if (typeof MediaRecorder === 'undefined' || !navigator.getUserMedia) {
+		alert('MediaRecorder not supported on your browser, use Firefox 30 or Chrome 49 instead.');
+	}else {
+		recBtn.style.display="none";
+		pantalla_normal.style.display="none";
+		pantalla_guardado.style.display="none";
+
+		//delay que muestra cada una de  las pantalla
+		setTimeout(function(){ 
+			pantalla_numero3.style.display="none";
+			setTimeout(function(){ 
+				pantalla_numero2.style.display="none";
+				setTimeout(function(){
+					pantalla_numero1.style.display="none"; 
+					startRecording(window.stream);
+					stopBtn.style.display="block";
+					countDownDate = new Date().getTime();
+					x = setInterval(mostrar_tiempo, 500);
+					tiempo_transcurrido.style.display="block";
+				}, lapso_numbers); 
+			}, lapso_numbers); 
+		}, lapso_numbers);
+	}
+}
+
 function onBtnRecordClicked (){
 	 if (typeof MediaRecorder === 'undefined' || !navigator.getUserMedia) {
 		alert('MediaRecorder not supported on your browser, use Firefox 30 or Chrome 49 instead.');
@@ -147,21 +187,30 @@ function onBtnRecordClicked (){
 
 function onBtnStopClicked(){
 	clearInterval(x);	//detiene timmer
+	videoElement.style.height="100%";
+	pantalla_numero3.style.height="100%";
+	pantalla_numero2.style.height="100%";
+	pantalla_numero1.style.height="100%";
 	stopBtn.style.display="none";
 	tiempo_transcurrido.style.display="none";
 	encerar();
+	pantalla_guardado.style.height="117%";
 	pantalla_guardado.style.display="block";
 	mediaRecorder.stop();
 	setTimeout(mostrar_normal, 3000);
 }
 
 function mostrar_normal(){
-	pantalla_normal.style.display="block";
+	//pantalla_normal.style.display="block";
+	pantalla_guardado.style.display="none";
+	pantallaInicio.style.display="block";
 	recBtn.style.display="block";
 	//se vuelven visible de nuevo
 	pantalla_numero3.style.display="block";
 	pantalla_numero2.style.display="block";
 	pantalla_numero1.style.display="block";
+	encabezado.style.display="block";
+
 }
 
 function log(message){

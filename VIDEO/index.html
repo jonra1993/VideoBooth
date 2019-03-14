@@ -5,27 +5,46 @@
 	<title>VideoBooth</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="css/main.css" />
+	<link rel="stylesheet" href="css/main.css" />	
 </head>
 
-<body>	  
+<body> 
+	<div class="bg">
+			<div class="logoIicio">
+					<div class="logoBGR"></div>
+						<article>
+							<h1>BIENVENIDO AL CAJERO DE EMOCIONES</h1>
+							<hr>
+							<p>Welcome</p>
+						</article>
+					<div class="logoProyecto"></div>
+					
+				</div>
 	<div class="row">
 		<div class="column side">
 		</div>
 		<div class="column middle">
 			<video  autoplay muted></video>
-			<div id="pantalla_normal" class="pantalla_normal"></div>	
+			<div id="pantalla_normal" class="pantalla_normal">
+				<div class="logo_grabar">
+					<div class="cuadro_espera"></div>
+				</div>
+				<div class="texto_grabar">
+					<p>Toque el boton para comenzar la grabación</p>
+				</div>
+			</div>
 			<div id="pantalla_numero3" class="pantalla_numero3"></div>
 			<div id="pantalla_numero2" class="pantalla_numero2"></div>
 			<div id="pantalla_numero1" class="pantalla_numero1"></div>
 			<div id="pantalla_guardado" class="pantalla_guardado"> </div>	
 		</div>
 		<div class="column side">
-			<button id="rec"></button>
-			<button id="stop"></button>
+			<button class="btn rec" id="rec"><b>GRABAR</b></button>
+			<button class="btn stop" id="stop"><b>DETENER</b></button>
 			<p id="demo"></p>	
 		</div>
 	</div>
+	</div> 
 	<p id="data"></p>
 	<script src="js/main.js"></script>
 </body>
