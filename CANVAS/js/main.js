@@ -104,8 +104,8 @@ function applyFilter(ctx, width, height) {
   //log('longitud de la imagen = ' + data.length);
   // modify pixels
 	//filtro1(data);
-	filtro_noir(data);
-//	filtro_western(data);
+	//filtro_noir(data);
+	filtro_western(data);
 	//filtro_scifi(data);
 	//bwcartoon(data);
 	//processDiff(data,70);
