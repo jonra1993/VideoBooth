@@ -8,20 +8,20 @@ For better experience I recommend to use this examples in chrome browsers and ac
 <br>
 
 <p align="center">
-  <img height="288" width="512" src="https://www.jonathanvargas.ml/wp-content/uploads/2019/03/videobooth1.png">
+  <img height="288" width="512" src="https://res.cloudinary.com/dnv0qwkrk/image/upload/v1601398512/wordpress_Jonathan/videobooth1.png">
 </p>
 
 <br>
 <p align="center">
-  <img height="288" width="512" src="https://www.jonathanvargas.ml/wp-content/uploads/2019/03/videobooth2.png">
+  <img height="288" width="512" src="https://res.cloudinary.com/dnv0qwkrk/image/upload/v1601398512/wordpress_Jonathan/videobooth2.png">
 </p>
 <br>
 <p align="center">
-  <img height="288" width="512" src="https://www.jonathanvargas.ml/wp-content/uploads/2019/03/videobooth33.png">
+  <img height="288" width="512" src="https://res.cloudinary.com/dnv0qwkrk/image/upload/v1601398512/wordpress_Jonathan/videobooth3.png">
 </p>
 <br>
 <p align="center">
-  <img height="288" width="512" src="https://www.jonathanvargas.ml/wp-content/uploads/2019/03/videobooth4.png">
+  <img height="288" width="512" src="https://res.cloudinary.com/dnv0qwkrk/image/upload/v1601398512/wordpress_Jonathan/videobooth4.png">
 </p>
 
 
