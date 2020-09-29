@@ -17,7 +17,7 @@ For better experience I recommend to use this examples in chrome browsers and ac
 </p>
 <br>
 <p align="center">
-  <img height="288" width="512" src="https://res.cloudinary.com/dnv0qwkrk/image/upload/v1601398512/wordpress_Jonathan/videobooth3.png">
+  <img height="288" width="512" src="https://res.cloudinary.com/dnv0qwkrk/image/upload/v1601398540/wordpress_Jonathan/videobooth33.png">
 </p>
 <br>
 <p align="center">
